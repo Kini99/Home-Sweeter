@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Titillium Web", sans-serif;
+}
+
+:root {
+  --mainColor: #fff;
+  --mainColorLight: #74f96e;
+  --secondaryColor: #576456;
+  --textColor: #1e7816;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  padding: 0 2rem;
+  background-color: var(--mainColor);
+  color: var(--textColor);
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+.kd-logo{
+  height: 4rem;
+  width: 7rem;
+}
+
+nav li {
+  margin: 0 1rem;
+  color: var(--textColor);
+  list-style: none;
+}
+.kd-link{
+    color: var(--textColor);
+    text-decoration: none;
+    font-size: 1.3rem;
+}
+nav li:hover {
+  color: var(--secondaryColor);
+}
+
+header .kd-nav-btn {
+  padding: 5px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--textColor);
+  visibility: hidden;
+  opacity: 0;
+  font-size: 1.8rem;
+}
+
+header div,
+nav {
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (max-width: 1024px) {
+  header .kd-nav-btn {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  header nav {
+    position: fixed;
+    top: -100vh;
+    left: 0;
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    background-color: var(--mainColor);
+    transition: 1s;
+  }
+
+  header .kd_responsive_nav {
+    transform: translateY(100vh);
+  }
+
+  nav .kd-nav-close-btn {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
+
+  nav li {
+    font-size: 1.5rem;
+  }
+}

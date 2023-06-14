@@ -8,6 +8,7 @@ function App() {
     <div className="App">
       <Buyproduct/>
       <MainRoutes />
+
     </div>
   );
 }
