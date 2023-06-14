@@ -1,10 +1,13 @@
 import './App.css';
 import React from 'react';
 import Buyproduct from "./Pages/BuyProduct/Buyproduct"
+import { MainRoutes } from './Routes/MainRoutes';
+
 function App() {
   return (
     <div className="App">
-     <Buyproduct/>
+      <Buyproduct/>
+      <MainRoutes />
     </div>
   );
 }
