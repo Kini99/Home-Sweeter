@@ -51,20 +51,20 @@ propertyRouter.get("/", async(req,res)=>{
         query.ownership = ownership;
       }
   
-      let properties = await PropertyModel.find(query)
+      let properties = await PropertyModel.find(query).lean()
         .limit(max)
         .skip((pageNo-1)*max);
 
         if (sort) {
             properties = properties.sort((a, b) => {
-              if (sort === 'High%to%Low') {
-                return a.total_price_num - b.total_price_num;
-              }else if(sort === 'Low%to%High') {
+              if (sort === 'HighToLow') {
                 return b.total_price_num - a.total_price_num;
-              }else if(sort === 'Large%to%Small') {
-                return a.carpet - b.carpet;
-              }else if(sort === 'Small%to%Large') {
-                return b.carpet - a.carpet;
+              }else if(sort === 'LowToHigh') {
+                return a.total_price_num - b.total_price_num;
+              }else if(sort === 'Large%20to%20Small') {
+                return b.carpet_num - a.carpet_num;
+              }else if(sort === 'Small%20to%20Large') {
+                return a.carpet_num - b.carpet_num;
               }else {
                 return 0;
               }
