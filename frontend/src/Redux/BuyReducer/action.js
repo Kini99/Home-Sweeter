@@ -1,14 +1,14 @@
 import axios from "axios";
-import { GET_PRODUCT_SUCCESS, PRODUCT_FAILURE, PRODUCT_REQUEST } from "./actionType";
+import { BUYPRODUCT_REQUEST, BUYPRODUCT_FAILURE, GET_BUYPRODUCT_SUCCESS } from "../actionType";
 
-export const getProducts =(allParams)=>(dispatch) => {
-  console.log(allParams)
+export const getProducts =()=>(dispatch) => {
+  //console.log(allParams)
   // Write logic here
-  dispatch({type:PRODUCT_REQUEST})
-  axios.get(`http://localhost:8080/property`,allParams).then((res)=>{
+  dispatch({type:BUYPRODUCT_REQUEST})
+  axios.get(`http://localhost:8080/property`).then((res)=>{
      console.log(res.data)
-    dispatch({type:GET_PRODUCT_SUCCESS,payload:res.data})
+    dispatch({type:GET_BUYPRODUCT_SUCCESS,payload:res.data})
   }).catch((err)=>{
-    dispatch({type:PRODUCT_FAILURE})
+    dispatch({type:BUYPRODUCT_FAILURE})
   })
 };

@@ -2,7 +2,7 @@ import {
     GET_BUYPRODUCT_SUCCESS,
     BUYPRODUCT_FAILURE,
     BUYPRODUCT_REQUEST,
-  } from "./actionType";
+  } from "../actionType";
   
   const initState = {
     isLoading: false,
