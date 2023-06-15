@@ -5,7 +5,7 @@ export const getProducts =()=>(dispatch) => {
   //console.log(allParams)
   // Write logic here
   dispatch({type:BUYPRODUCT_REQUEST})
-  axios.get(`http://localhost:8080/property`).then((res)=>{
+  axios.get(`http://localhost:8080/property/`).then((res)=>{
      console.log(res.data)
     dispatch({type:GET_BUYPRODUCT_SUCCESS,payload:res.data})
   }).catch((err)=>{
