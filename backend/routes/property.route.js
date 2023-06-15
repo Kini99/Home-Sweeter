@@ -21,6 +21,8 @@ propertyRouter.get("/", async(req,res)=>{
     const status = req.query.status || '';
     const furnishing = req.query.furnishing || '';
     const ownership = req.query.ownership || '';
+    const type = req.query.type || '';
+    const transaction = req.query.transaction || '';
 
     try {
       let query = {
@@ -50,6 +52,12 @@ propertyRouter.get("/", async(req,res)=>{
       if (ownership) {
         query.ownership = ownership;
       }
+      if (type) {
+        query.type = type;
+      }
+      if (transaction) {
+        query.transaction = transaction;
+      }
   
       let properties = await PropertyModel.find(query).lean()
         .limit(max)
@@ -61,9 +69,9 @@ propertyRouter.get("/", async(req,res)=>{
                 return b.total_price_num - a.total_price_num;
               }else if(sort === 'LowToHigh') {
                 return a.total_price_num - b.total_price_num;
-              }else if(sort === 'Large%20to%20Small') {
+              }else if(sort === 'LargeToSmall') {
                 return b.carpet_num - a.carpet_num;
-              }else if(sort === 'Small%20to%20Large') {
+              }else if(sort === 'SmallToLarge') {
                 return a.carpet_num - b.carpet_num;
               }else {
                 return 0;
