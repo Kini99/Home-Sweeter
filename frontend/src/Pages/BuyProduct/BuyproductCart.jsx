@@ -1,12 +1,10 @@
-import { Box, Button, Flex, Image, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Image, Text,useToast } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import { IoHeartOutline } from "react-icons/io5";
-import { IoCartOutline } from "react-icons/io5";
+import { IoHeartOutline ,IoCartOutline} from "react-icons/io5";
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {useToast} from '@chakra-ui/react'
 
-const ProductCart = ({product}) => {
+export const BuyproductCart = ({product}) => {
     const userAuth=useSelector((store)=>store.AuthReducer.userAuth)
     const dispatch=useDispatch()
     const toast = useToast()
@@ -42,4 +40,3 @@ const ProductCart = ({product}) => {
     )
 }
 
-export default ProductCart
