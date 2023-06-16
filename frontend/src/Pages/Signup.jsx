@@ -26,7 +26,7 @@ export const Signup = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleChange = (e) => {};
+  //const handleChange = (e) => {};
 
   // const postdata = async (e) => {
   //   e.preventDefault();
@@ -41,12 +41,12 @@ export const Signup = () => {
       gender,
       password,
     };
-    //console.log(payload);
-    //fetch("http://localhost:4500/users/register", {
-    axios.post("/users/register", payload)
-      .then((res) => res.json())
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+
+    axios.post("http://localhost:8080/users/register", payload)
+    .then((res) => 
+    console.log(res.data)
+    )
+    .catch((err) => console.log(err));
 
     setName("");
     setEmail("");
@@ -139,7 +139,9 @@ export const Signup = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <InputRightElement h={"full"}>
-                  <Button variant={"ghost"} onClick={{}}>
+                  <Button variant={"ghost"} onClick={() =>
+                        setShowPassword((showPassword) => !showPassword)
+                      }>
                     {showPassword ? <ViewIcon /> : <ViewOffIcon />}
                   </Button>
                 </InputRightElement>

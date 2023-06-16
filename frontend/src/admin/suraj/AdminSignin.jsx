@@ -1,3 +1,4 @@
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
   Flex,
   Box,
@@ -11,15 +12,31 @@ import {
   Link,
   Text,
   useColorModeValue,
+  InputRightElement,
+  InputGroup,
 } from "@chakra-ui/react";
+import axios from "axios";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 export const AdminSignin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
-  const submitLogin = async () => {
+  const submitLogin = () => {
+    const payload = {
+      email,
+      password,
+    };
+
+    axios.post("http://localhost:8080/admins/login", payload)
+      .then((res) =>{
+         console.log(res.data);
+         localStorage.setItem("admintoken",res.data.token)
+        })
+      .catch((err) => console.log(err));
+
     setEmail("");
     setPassword("");
   };
@@ -62,11 +79,21 @@ export const AdminSignin = () => {
 
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
-              <Input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <InputGroup>
+                <Input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <InputRightElement h={"full"}>
+                  <Button variant={"ghost"} onClick={() =>
+                        setShowPassword((showPassword) => !showPassword)
+                      }>
+                    {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
             </FormControl>
 
             <Stack spacing={10}>

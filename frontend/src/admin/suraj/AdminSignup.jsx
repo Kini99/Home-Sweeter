@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import axios from "axios";
 
 export const AdminSignup = () => {
   const [name, setName] = useState("");
@@ -23,12 +24,26 @@ export const AdminSignup = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleChange = (e) => {};
 
-  const postdata = async (e) => {
-    e.preventDefault();
-    console.log("hii i am done");
+  const postdata = () => {
+    const payload = {
+      name,
+      email,
+      phone,
+      password,
+    };
+    axios.post("http://localhost:8080/admins/register", payload)
+    .then((res) => 
+    console.log(res.data)
+    )
+    .catch((err) => console.log(err));
+
+    setName("");
+    setEmail("");
+    setPhone("");
+    setPassword("");
   };
+
 
   return (
     <Flex
@@ -49,7 +64,7 @@ export const AdminSignup = () => {
       >
         <Stack align={"center"}>
           <Heading fontSize={"4xl"} textAlign={"center"}>
-            Admin Sign Up
+           Admin Sign Up
           </Heading>
         </Stack>
 
@@ -66,7 +81,7 @@ export const AdminSignup = () => {
                 type="text"
                 value={name}
                 name="name"
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => setName(e.target.value)}
               />
             </FormControl>
 
@@ -76,7 +91,7 @@ export const AdminSignup = () => {
                 type="email"
                 name="email"
                 value={email}
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </FormControl>
 
@@ -85,7 +100,7 @@ export const AdminSignup = () => {
               <Input
                 type="number"
                 value={phone}
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => setPhone(e.target.value)}
                 name="phone"
               />
             </FormControl>
@@ -97,10 +112,12 @@ export const AdminSignup = () => {
                   type={showPassword ? "text" : "password"}
                   name="password"
                   value={password}
-                  onChange={(e) => handleChange(e)}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <InputRightElement h={"full"}>
-                  <Button variant={"ghost"} onClick={{}}>
+                  <Button variant={"ghost"} onClick={() =>
+                        setShowPassword((showPassword) => !showPassword)
+                      }>
                     {showPassword ? <ViewIcon /> : <ViewOffIcon />}
                   </Button>
                 </InputRightElement>
