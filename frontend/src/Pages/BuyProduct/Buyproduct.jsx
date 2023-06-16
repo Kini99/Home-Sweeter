@@ -6,10 +6,6 @@ import { Box, Button, Flex, Grid, Stack,Skeleton } from "@chakra-ui/react";
 import {BuyproductCart} from "./BuyproductCart"
 import BuyNavbar from "./BuyNavbar";
 
-
-
-
-
 export const Buyproduct = () => {
   const [page, setPage] = useState(1);
   const [searchParam, setSearchParam] = useSearchParams();
@@ -18,13 +14,18 @@ export const Buyproduct = () => {
   const {product,isloading }=useSelector((store)=>{
     return store.BuyReducer
   },shallowEqual)
-
   
   let allParams = {
     params: {
-      category: searchParam.getAll("category"),
-      _limit: 8,
-      _page: page,
+      page: page,
+      search:searchParam.getAll("search"),
+      status:searchParam.getAll("status"),
+      furnishing:searchParam.getAll("furnishing"),
+      ownership:searchParam.getAll("ownership"),
+      type:searchParam.getAll("type"),
+      transaction:searchParam.getAll("transaction"),
+      sortByPrice:searchParam.getAll("sortByPrice"),
+      sortBySize:searchParam.getAll("sortBySize"),
     },
   }
   useEffect(() => {

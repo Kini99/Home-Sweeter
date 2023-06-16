@@ -17,7 +17,8 @@ propertyRouter.get("/", async(req,res)=>{
     const max=10;
     const pageNo=Number(req.query.page)||1;
     const search = req.query.search || '';
-    const sort = req.query.sort || '';
+    const sortByPrice = req.query.sortByPrice || '';
+    const sortBySize = req.query.sortBySize || '';
     const status = req.query.status || '';
     const furnishing = req.query.furnishing || '';
     const ownership = req.query.ownership || '';
@@ -63,15 +64,23 @@ propertyRouter.get("/", async(req,res)=>{
         .limit(max)
         .skip((pageNo-1)*max);
 
-        if (sort) {
+        if (sortByPrice) {
             properties = properties.sort((a, b) => {
-              if (sort === 'HighToLow') {
+              if (sortByPrice === 'HighToLow') {
                 return b.total_price_num - a.total_price_num;
-              }else if(sort === 'LowToHigh') {
+              }else if(sortByPrice === 'LowToHigh') {
                 return a.total_price_num - b.total_price_num;
-              }else if(sort === 'LargeToSmall') {
+              }else {
+                return 0;
+              }
+            });
+          }
+
+          if (sortBySize) {
+            properties = properties.sort((a, b) => {
+              if(sortBySize === 'LargeToSmall') {
                 return b.carpet_num - a.carpet_num;
-              }else if(sort === 'SmallToLarge') {
+              }else if(sortBySize === 'SmallToLarge') {
                 return a.carpet_num - b.carpet_num;
               }else {
                 return 0;

@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import axios from "axios";
 
 export const Signup = () => {
   const [name, setName] = useState("");
@@ -27,10 +28,33 @@ export const Signup = () => {
 
   const handleChange = (e) => {};
 
-  const postdata = async (e) => {
-    e.preventDefault();
-    console.log("hii i am done");
+  // const postdata = async (e) => {
+  //   e.preventDefault();
+  //   console.log("hii i am done");
+  // };
+
+  const postdata = () => {
+    const payload = {
+      name,
+      email,
+      phone,
+      gender,
+      password,
+    };
+    //console.log(payload);
+    //fetch("http://localhost:4500/users/register", {
+    axios.post("/users/register", payload)
+      .then((res) => res.json())
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+
+    setName("");
+    setEmail("");
+    setPhone("");
+    setGender("")
+    setPassword("");
   };
+
 
   return (
     <Flex
@@ -68,7 +92,7 @@ export const Signup = () => {
                 type="text"
                 value={name}
                 name="name"
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => setName(e.target.value)}
               />
             </FormControl>
 
@@ -78,7 +102,7 @@ export const Signup = () => {
                 type="email"
                 name="email"
                 value={email}
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </FormControl>
 
@@ -86,7 +110,7 @@ export const Signup = () => {
               <FormLabel>Gender</FormLabel>
               <Select
                 value={gender}
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => setGender(e.target.value)}
                 name="gender"
               >
                 <option value="">Choose Gender</option>
@@ -100,7 +124,7 @@ export const Signup = () => {
               <Input
                 type="number"
                 value={phone}
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => setPhone(e.target.value)}
                 name="phone"
               />
             </FormControl>
@@ -112,7 +136,7 @@ export const Signup = () => {
                   type={showPassword ? "text" : "password"}
                   name="password"
                   value={password}
-                  onChange={(e) => handleChange(e)}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <InputRightElement h={"full"}>
                   <Button variant={"ghost"} onClick={{}}>
