@@ -2,15 +2,31 @@
 import React, { useState } from 'react'
 import { Box,Button,Select,Text, } from '@chakra-ui/react'
 // import { Flex } from '@chakra-ui/react'
-const BuyNavbar = () => {
 
-const [sortByPrice,setSortByPrice]=useState("");
-const [sortBySize,setSortBySize]=useState("");
-const [status,setStatus]=useState("");
-const [furnishing,setFurnishing]=useState("");
-const [ownership,setOwnership]=useState("");
-const [type,setType]=useState("");
-const [transaction,setTransaction]=useState("");
+const BuyNavbar = () => {
+    
+    const queryParams = new URLSearchParams(window.location.search);
+    
+      const [sortByPrice, setSortByPrice] = useState(queryParams.get('sortByPrice') || '');
+      const [sortBySize, setSortBySize] = useState(queryParams.get('sortBySize') || '');
+      const [status, setStatus] = useState(queryParams.get('status') || '');
+      const [furnishing, setFurnishing] = useState(queryParams.get('furnishing') || '');
+      const [ownership, setOwnership] = useState(queryParams.get('ownership') || '');
+      const [type, setType] = useState(queryParams.get('type') || '');
+      const [transaction, setTransaction] = useState(queryParams.get('transaction') || '');
+    
+      const updateQueryParams = () => {
+        queryParams.set('sortByPrice', sortByPrice);
+        queryParams.set('sortBySize', sortBySize);
+        queryParams.set('status', status);
+        queryParams.set('furnishing', furnishing);
+        queryParams.set('ownership', ownership);
+        queryParams.set('type', type);
+        queryParams.set('transaction', transaction);
+    
+        const newUrl = `${window.location.pathname}?${queryParams.toString()}`;
+    window.history.pushState(null, '', newUrl);
+      };
 
   return (
     <div>
@@ -55,7 +71,7 @@ const [transaction,setTransaction]=useState("");
                 <option value='Resale'>Resale</option>
             </Select>
 
-            <Button colorScheme='green' variant='outline'>
+            <Button colorScheme='green' variant='outline' onClick={updateQueryParams}>
     Save Search
   </Button>
         </Box>

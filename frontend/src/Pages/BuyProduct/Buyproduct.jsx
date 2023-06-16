@@ -118,6 +118,7 @@ export const Buyproduct = () => {
     <>
     <BuyNavbar/>
       <br />
+      <Flex>
       <Grid
         gridTemplateColumns={{
           xl: "repeat(2,1fr)",
@@ -131,11 +132,13 @@ export const Buyproduct = () => {
         m={"auto"}
       >
         {product?.map((el) => {
-         
-          console.log(el,"test")
-          return ( <BuyproductCart  key={el.id}  product={el} />);
+          return (
+            <BuyproductCart key={el._id} product={el} />
+          );
         })}
       </Grid>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d30144.622186874127!2d72.82389400435528!3d19.19180514340419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1686954305012!5m2!1sen!2sin" style={{width:"600px", height:"450px", border:"0.5px solid grey"}} loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+      </Flex>
       <br />
       <Flex gap={"5px"} justifyContent={"center"}>
         <Button
