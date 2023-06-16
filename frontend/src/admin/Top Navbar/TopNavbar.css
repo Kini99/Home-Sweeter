@@ -10,7 +10,7 @@
 :root {
   --mainColor: #fff;
   --mainColorLight: #74f96e;
-  --secondaryColor: #576456;
+  --secondaryColor: #b3ffae;
   --textColor: #1e7816;
 }
 
@@ -23,9 +23,11 @@ header {
   background-color: var(--mainColor);
   color: var(--textColor);
   cursor: pointer;
+  top: 0;
+  position: sticky;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
-.kd-logo{
+.kd-logo {
   height: 4rem;
   width: 7rem;
 }
@@ -34,14 +36,21 @@ nav li {
   margin: 0 1rem;
   color: var(--textColor);
   list-style: none;
+  padding: 0.3rem;
 }
-.kd-link{
-    color: var(--textColor);
-    text-decoration: none;
-    font-size: 1.3rem;
+.kd-link {
+  color: var(--textColor);
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: bold;
 }
 nav li:hover {
-  color: var(--secondaryColor);
+  background-color: var(--secondaryColor);
+
+  border-radius: 0.5rem;
+}
+.kd-link:hover {
+  color: black;
 }
 
 header .kd-nav-btn {
