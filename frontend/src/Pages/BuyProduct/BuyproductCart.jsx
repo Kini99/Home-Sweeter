@@ -1,50 +1,150 @@
-import { Box, Button, Flex, Image, Text,useToast,Select } from '@chakra-ui/react'
+import { Box, Button, Flex, Image, Text, useToast, Select } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import { IoHeartOutline ,IoCartOutline} from "react-icons/io5";
+import { IoHeartOutline, IoCartOutline, IoHeartSharp } from "react-icons/io5";
+import { TbShare3 } from "react-icons/tb";
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-export const BuyproductCart = ({product}) => {
-    console.log("Buy product cart",product);
-    //const userAuth=useSelector((store)=>store.AuthReducer.userAuth)
-    const dispatch=useDispatch()
-    const toast = useToast()
-    const navigate=useNavigate()
-   // const handleAdd=()=>{
-    //     if(userAuth===false){
-    //         toast({
-    //             title: 'Please Login First.',
-    //             status: 'warning',
-    //             duration: 3000,
-    //             isClosable: true,
-    //             position:'top'
-    //           }) 
-    //           navigate("/login") 
-    //     }else{
-    //         navigate('/singleproduct')
-    //     }
-    // }
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter } from '@chakra-ui/react';
+
+
+export const BuyproductCart = ({ product }) => {
+
+    const [wishlist, setWishlist] = useState(false)
+
+    const handleToggle = () => {
+        setWishlist(!wishlist)
+    }
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const currentUrl = window.location.href;
+
+    const handleModalOpen = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleModalClose = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleCopyLink = () => {
+        alert('Link copied!');
+    };
+
+    const [isSchedulingModalOpen, setIsSchedulingModalOpen] = useState(false);
+    const [selectedDate, setSelectedDate] = useState('');
+    const [selectedTime, setSelectedTime] = useState('');
+    const [appointmentType, setAppointmentType] = useState('');
+
+    const handleSchedulingModalOpen = () => {
+        setIsSchedulingModalOpen(true);
+    }
+    const handleSchedulingModalClose = () => {
+        setIsSchedulingModalOpen(false);
+    }
+    const handleScheduleAppointment = () => {
+        // Handle scheduling appointment logic
+        alert(`Appointment scheduled for ${selectedDate} at ${selectedTime}. Type: ${appointmentType}`);
+        handleSchedulingModalClose();
+    };
+
     return (
-        
+
         <>
-        
-        <Flex flexDirection={"column"} gap={"2px"}>
-            <Box borderTopRadius={"20px"} p={"10px"} backgroundColor={"#f4f4f4"} textAlign={"start"}>
-                <Flex justifyContent={"right"}>
-                    <IoHeartOutline size="20px" color={"606060"}/>
-                </Flex>
-                <Link to={`/product/${product.id}`}>
-                    <Image src={product.image} borderRadius={"10%"}  w={"70%"} marginBottom={"5px"}  />
-                    <Text color={"#606060"} as={"b"}> ₹ {product.total_price}</Text>
-                    <Text noOfLines={1} as={"b"}>{product.description}</Text>
-                    
-                    <Text color={"#606060"}><Image    width={"25px"} src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpW1s308Id74vI6DkOCsBqmHo3mKpoaGtKaSUnrQdKsw&usqp=CAU&ec=48600113'/>{product.bathroom}ba , {product.carpet} </Text>
-                    <Text color={"#606060"} > Status:{product.furnishing}, Details:{product.details}</Text>
-                    
-                </Link>
-            </Box>
-        </Flex>
+            <Flex flexDirection={"column"} gap={"2px"}>
+
+                <Box borderRadius={"20px"} p={"10px"} backgroundColor={"#f4f4f4"} textAlign={"start"}>
+                    <Flex justifyContent={"right"}>
+                        {wishlist ? <IoHeartSharp size="20px" color={"606060"} onClick={handleToggle} /> : <IoHeartOutline size="20px" color={"606060"} onClick={handleToggle} />}
+                        <TbShare3 size="20px" color={"606060"} onClick={handleModalOpen}></TbShare3>
+                        <Modal isOpen={isModalOpen} onClose={handleModalClose}>
+                            <ModalOverlay />
+                            <ModalContent>
+                                <ModalHeader>Share Link</ModalHeader>
+                                <ModalBody>
+                                    <Text>{currentUrl}</Text>
+                                </ModalBody>
+                                <ModalFooter>
+                                    <CopyToClipboard text={currentUrl}>
+                                        <Button colorScheme="blue" onClick={handleCopyLink}>
+                                            Copy Link
+                                        </Button>
+                                    </CopyToClipboard>
+                                    <Button colorScheme="gray" onClick={handleModalClose}>
+                                        Close
+                                    </Button>
+                                </ModalFooter>
+                            </ModalContent>
+                        </Modal>
+                    </Flex>
+
+                    <Flex>
+
+                        <Image src={product.image} borderRadius={"10%"} w={"40%"} h={"150px"} marginBottom={"5px"} />
+                        <Box>
+                            <Link to={`/buyproduct/${product._id}`}>
+                                <Text>{product.details}</Text>
+                                {product.building ? <Text color={"#606060"}>{product.building}</Text> : null}
+                                <Flex>
+                                    <Box>
+                                        <Text>Carpet Area</Text>
+                                        <Text>{product.carpet}</Text>
+                                    </Box>
+                                    <Box>
+                                        <Text>Status</Text>
+                                        <Text>{product.status}</Text>
+                                    </Box>
+                                    <Box>
+                                        <Text>Type</Text>
+                                        <Text>{product.furnishing}</Text>
+                                    </Box>
+                                </Flex>
+                                <Text>{product.description.slice(0, 50)}{product.description.length > 50 && "..."}</Text>
+                            </Link>
+                        </Box>
+
+                        <Box>
+                            <Text>₹ {product.total_price}</Text>
+                            {product.price_per_sqft ? <Text>₹ {product.price_per_sqft}</Text> : null}
+                            <Button onClick={handleSchedulingModalOpen}>Schedule Appointment</Button>
+                            <Modal isOpen={isSchedulingModalOpen} onClose={handleSchedulingModalClose}>
+                                <ModalOverlay />
+                                <ModalContent>
+                                    <ModalHeader>Schedule Appointment</ModalHeader>
+                                    <ModalBody>
+                                        <label>Date:</label>
+                                        <input type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)} />
+
+                                        <label>Time:</label>
+                                        <input type="time" value={selectedTime} onChange={(e) => setSelectedTime(e.target.value)} />
+
+                                        <label>Appointment Type:</label>
+                                        <select value={appointmentType} onChange={(e) => setAppointmentType(e.target.value)}>
+                                            <option value="">Select</option>
+                                            <option value="In-person">In-person</option>
+                                            <option value="Virtual">Virtual</option>
+                                        </select>
+                                    </ModalBody>
+                                    <ModalFooter>
+                                        <Button colorScheme="blue" onClick={handleScheduleAppointment}>
+                                            Schedule
+                                        </Button>
+                                        <Button colorScheme="gray" onClick={handleSchedulingModalClose}>
+                                            Close
+                                        </Button>
+                                    </ModalFooter>
+                                </ModalContent>
+                            </Modal>
+                            <br />
+                            <Button>Buy Now</Button>
+                            <br />
+                            <Link to="/calculator">{product.calculator}</Link>
+                        </Box>
+                    </Flex>
+
+                </Box>
+            </Flex >
         </>
-        
+
     )
 }
 

@@ -41,6 +41,7 @@ export const Signup = () => {
       gender,
       password,
     };
+
     axios.post("http://localhost:8080/users/register", payload)
     .then((res) => 
     console.log(res.data)
