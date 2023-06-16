@@ -6,6 +6,8 @@ import Home from "../Pages/Home";
 import {Buyproduct} from "../Pages/BuyProduct/Buyproduct"
 import { AdminSignin } from "../admin/suraj/AdminSignin";
 import { AdminSignup } from "../admin/suraj/AdminSignup";
+import SingleProduct from "../Pages/SingleProduct/SingleProduct";
+import Calculator from "../Pages/Calculator";
 
 export const MainRoutes = () => {
   return (
@@ -14,6 +16,8 @@ export const MainRoutes = () => {
       <Route path="/signin" element={<Signin />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/buyproduct" element={<Buyproduct />} />
+      <Route path="/buyproduct/:id" element={<SingleProduct />} />
+      <Route path="/calculator" element={<Calculator />} />
       <Route path="/adminsignin" element={<AdminSignin />} />
       <Route path="/adminsignup" element={<AdminSignup />} />
     </Routes>
