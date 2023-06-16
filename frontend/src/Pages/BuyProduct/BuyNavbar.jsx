@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { Box,Button,Select,Text, } from '@chakra-ui/react'
-import { Flex } from '@chakra-ui/react'
+// import { Flex } from '@chakra-ui/react'
 const BuyNavbar = () => {
   return (
     <div>
