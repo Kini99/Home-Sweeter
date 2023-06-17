@@ -1,9 +1,10 @@
 const express=require("express");
 const { PropertyModel } = require("../models/property.model");
+const { auth } = require("../middleware/auth.middleware");
 
 const propertyRouter= express.Router();
 
-propertyRouter.post("/add", async (req, res) => {
+propertyRouter.post("/add", auth, async (req, res) => {
     try {
         const property = new PropertyModel(req.body);
         await property.save();
@@ -104,7 +105,7 @@ propertyRouter.get("/:propertyId", async(req,res)=>{
     }
 })
 
-propertyRouter.patch("/update/:propertyId", async (req, res) => {
+propertyRouter.patch("/update/:propertyId", auth, async (req, res) => {
     const { propertyId } = req.params;
     try {
         await PropertyModel.findByIdAndUpdate({ _id: propertyId }, req.body);
@@ -114,7 +115,7 @@ propertyRouter.patch("/update/:propertyId", async (req, res) => {
     }
 })
 
-propertyRouter.delete("/delete/:propertyId", async (req, res) => {
+propertyRouter.delete("/delete/:propertyId", auth, async (req, res) => {
     const { propertyId } = req.params;
     try {
         await PropertyModel.findByIdAndDelete({ _id: propertyId });
