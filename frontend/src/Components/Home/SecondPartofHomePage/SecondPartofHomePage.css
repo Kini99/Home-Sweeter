@@ -1,0 +1,33 @@
+#SecondPartofHomePage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 30vh;
+    text-align: center;
+  }
+  
+  #SecondPartofHomePage h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  #SecondPartofHomePage p {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    width: 70%;
+  }
+  
+  /* Media Queries */
+  @media screen and (max-width: 768px) {
+    /* Adjust styles for smaller screens */
+    #SecondPartofHomePage h1 {
+      font-size: 2rem;
+    }
+    
+    #SecondPartofHomePage p {
+      font-size: 1.2rem;
+      width: 90%;
+    }
+  }
+  
