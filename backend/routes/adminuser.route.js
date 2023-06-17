@@ -3,6 +3,7 @@ const { AdminUserModel } = require("../models/adminuser.model");
 const { BlacklistModel } = require("../models/token.model");
 const bcrypt=require("bcrypt");
 const jwt=require('jsonwebtoken');
+const { adminGoogleSignup } = require("../controller/admin");
 
 const adminuserRouter=express.Router()
 
@@ -85,6 +86,9 @@ if(decoded){
     res.status(400).json({error:err.message})
 }
 })
+
+adminuserRouter.route('/admingooglesignup').post(adminGoogleSignup);
+
 
 
 module.exports={

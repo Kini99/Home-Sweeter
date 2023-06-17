@@ -16,6 +16,14 @@ import {
 import { NavLink } from "react-router-dom";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import axios from "axios";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from "firebase/auth";
+import { firebaseCon } from "../config/firebase";
+import { API } from "../config/API";
 
 export const AdminSignup = () => {
   const [name, setName] = useState("");
@@ -24,6 +32,30 @@ export const AdminSignup = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
+  const googleSignup = async () => {
+    const auth = getAuth(firebaseCon);
+    const googleProvider = new GoogleAuthProvider();
+    await signInWithPopup(auth, googleProvider)
+      .then((res) => {
+        const { displayName, email } = res._tokenResponse;
+        const postData = {
+          name: displayName,
+          email: email,
+        };
+        API({
+          url: "/admins/admingooglesignup",
+          method: "POST",
+          data: postData,
+        })
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => console.log(err));
+  };
 
   const postdata = () => {
     const payload = {
@@ -32,18 +64,15 @@ export const AdminSignup = () => {
       phone,
       password,
     };
-    axios.post("http://localhost:8080/admins/register", payload)
-    .then((res) => 
-    console.log(res.data)
-    )
-    .catch((err) => console.log(err));
+    API.post("/admins/register", payload)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
 
     setName("");
     setEmail("");
     setPhone("");
     setPassword("");
   };
-
 
   return (
     <Flex
@@ -64,7 +93,7 @@ export const AdminSignup = () => {
       >
         <Stack align={"center"}>
           <Heading fontSize={"4xl"} textAlign={"center"}>
-           Admin Sign Up
+            Admin Sign Up
           </Heading>
         </Stack>
 
@@ -115,9 +144,12 @@ export const AdminSignup = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <InputRightElement h={"full"}>
-                  <Button variant={"ghost"} onClick={() =>
-                        setShowPassword((showPassword) => !showPassword)
-                      }>
+                  <Button
+                    variant={"ghost"}
+                    onClick={() =>
+                      setShowPassword((showPassword) => !showPassword)
+                    }
+                  >
                     {showPassword ? <ViewIcon /> : <ViewOffIcon />}
                   </Button>
                 </InputRightElement>
@@ -137,6 +169,10 @@ export const AdminSignup = () => {
               >
                 Sign up
               </Button>
+            </Stack>
+
+            <Stack>
+              <Button onClick={googleSignup}> Google </Button>
             </Stack>
 
             <Stack pt={6}>
