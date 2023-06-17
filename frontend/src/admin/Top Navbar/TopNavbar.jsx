@@ -14,7 +14,7 @@ const TopNavbar = () => {
       <img className="kd-logo" src="https://www.linkpicture.com/q/home-logo.jpg" alt="Logo" />
       <nav ref={navRef}>
       <li>
-          <Link to={"/"} className="kd-link" >Property List</Link>
+          <Link to={"/adminProperty"} className="kd-link" >Property List</Link>
         </li>
         <li>
           <Link to={"/addproperty"}className="kd-link">Add Property</Link>

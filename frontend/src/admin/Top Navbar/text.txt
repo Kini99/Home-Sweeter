@@ -1,0 +1,24 @@
+  <FormLabel m={"10px"}>Price</FormLabel>
+          <Input
+            border="1px solid gray"
+            type="number"
+            value={item.price}
+            placeholder="price"
+            size="md"
+            name="Price"
+            onChange={handleChange}
+            mb={"10px"}
+          />
+          <FormLabel m={"10px"}>Gender</FormLabel>
+          <Select
+            border="1px solid gray"
+            placeholder="Gender"
+            size="md"
+            value={item.category}
+            name="gender"
+            onChange={handleChange}
+            mt={"10px"}
+          >
+            <option value={"mens"}>Male</option>
+            <option value={"womens"}>Female</option>
+          </Select>
