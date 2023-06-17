@@ -8,6 +8,9 @@ import { AdminSignin } from "../admin/suraj/AdminSignin";
 import { AdminSignup } from "../admin/suraj/AdminSignup";
 import SingleProduct from "../Pages/SingleProduct/SingleProduct";
 import Calculator from "../Pages/Calculator";
+import Property from "../admin/propertyList/Property";
+import AddProperty from "../admin/add property/AddProperty";
+import EditProperty from "../admin/propertyList/EditProperty";
 
 export const MainRoutes = () => {
   return (
@@ -20,6 +23,9 @@ export const MainRoutes = () => {
       <Route path="/calculator" element={<Calculator />} />
       <Route path="/adminsignin" element={<AdminSignin />} />
       <Route path="/adminsignup" element={<AdminSignup />} />
+      <Route path="/adminProperty" element={<Property />} />
+      <Route path="/addProperty" element={<AddProperty />} />
+      <Route path="/editProperty/:id" element={<EditProperty />} />
     </Routes>
   );
 };
