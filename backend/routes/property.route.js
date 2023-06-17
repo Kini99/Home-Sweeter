@@ -15,7 +15,7 @@ propertyRouter.post("/add", async (req, res) => {
 
 propertyRouter.get("/", async(req,res)=>{
     const max=10;
-    const pageNo=Number(req.query.page)||1;
+    const page=Number(req.query.page)||1;
     const search = req.query.search || '';
     const sortByPrice = req.query.sortByPrice || '';
     const sortBySize = req.query.sortBySize || '';
@@ -62,7 +62,7 @@ propertyRouter.get("/", async(req,res)=>{
   
       let properties = await PropertyModel.find(query).lean()
         .limit(max)
-        .skip((pageNo-1)*max);
+        .skip((page-1)*max);
 
         if (sortByPrice) {
             properties = properties.sort((a, b) => {
