@@ -1,24 +1,66 @@
 import { Box, Button, Flex, Text, Image } from '@chakra-ui/react'
-import React from 'react'
-import { shallowEqual, useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Amenities from "./Amenities.png";
+import axios from 'axios';
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter } from '@chakra-ui/react';
 
 const SingleProduct = () => {
 
 const {id}=useParams();
-console.log(id)
 
-const {product,isloading }=useSelector((store)=>{
-    return store.BuyReducer
-  },shallowEqual)
+const token=localStorage.getItem("frontendtoken")
 
-  console.log(product);
+const [currentProduct, setCurrentProduct] = useState({});
+    const [loading, setLoading] = useState(false);
 
-  const currentProduct=product.filter((e)=>e._id==id)[0];
+    const singlePage = async() => {
+        setLoading(true)
+       let data=await axios.get(`${process.env.REACT_APP_SERVER}/property/${id}`)
+       .then(res => {
+            setCurrentProduct(res.data)
+        }).catch(err => {
+            console.log(err)
+        }).finally(()=>{
+           setLoading(false)
+        })
+    }
 
-  console.log(currentProduct);
+    useEffect(() => {
+        singlePage()
+    }, [])
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const currentUrl = window.location.href;
+
+    const handleModalOpen = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleModalClose = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleCopyLink = () => {
+        alert('Link copied!');
+    };
+
+    const [isSchedulingModalOpen, setIsSchedulingModalOpen] = useState(false);
+    const [selectedDate, setSelectedDate] = useState('');
+    const [selectedTime, setSelectedTime] = useState('');
+    const [appointmentType, setAppointmentType] = useState('');
+
+    const handleSchedulingModalOpen = () => {
+        setIsSchedulingModalOpen(true);
+    }
+    const handleSchedulingModalClose = () => {
+        setIsSchedulingModalOpen(false);
+    }
+    const handleScheduleAppointment = () => {
+        alert(`Appointment scheduled for ${selectedDate} at ${selectedTime}. Type: ${appointmentType}`);
+        handleSchedulingModalClose();
+    };
 
   return (
     <div>
@@ -44,9 +86,39 @@ const {product,isloading }=useSelector((store)=>{
                 </Flex>
                 {currentProduct.description}
                 <br/>
-                <Button>Schedule Appointment</Button>
-                <Button>Buy Now</Button>
-                <Link to="/calculator"><Button>{currentProduct.calculator}</Button></Link>
+                <Button onClick={handleSchedulingModalOpen}>Schedule Appointment</Button>
+                            <Modal isOpen={isSchedulingModalOpen} onClose={handleSchedulingModalClose}>
+                                <ModalOverlay />
+                                <ModalContent>
+                                    <ModalHeader>Schedule Appointment</ModalHeader>
+                                    <ModalBody>
+                                        <label>Date:</label>
+                                        <input type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)} />
+
+                                        <label>Time:</label>
+                                        <input type="time" value={selectedTime} onChange={(e) => setSelectedTime(e.target.value)} />
+
+                                        <label>Appointment Type:</label>
+                                        <select value={appointmentType} onChange={(e) => setAppointmentType(e.target.value)}>
+                                            <option value="">Select</option>
+                                            <option value="In-person">In-person</option>
+                                            <option value="Virtual">Virtual</option>
+                                        </select>
+                                    </ModalBody>
+                                    <ModalFooter>
+                                        <Button colorScheme="blue" onClick={handleScheduleAppointment}>
+                                            Schedule
+                                        </Button>
+                                        <Button colorScheme="gray" onClick={handleSchedulingModalClose}>
+                                            Close
+                                        </Button>
+                                    </ModalFooter>
+                                </ModalContent>
+                            </Modal>
+                            <br />
+                            {token?<Link to="/payment"><Button>Buy Now</Button></Link>:<Link to="/login"><Button>Buy Now</Button></Link>}
+                            <br />
+                            {token?<Link to="/calculator"><Button>{currentProduct.calculator}</Button></Link>:<Link to="/login"><Button>{currentProduct.calculator}</Button></Link>}
             </Box>
             </Flex>
         </Box>

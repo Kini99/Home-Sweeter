@@ -8,9 +8,13 @@ import { AdminSignin } from "../admin/suraj/AdminSignin";
 import { AdminSignup } from "../admin/suraj/AdminSignup";
 import SingleProduct from "../Pages/SingleProduct/SingleProduct";
 import Calculator from "../Pages/Calculator";
+
 import Property from "../admin/propertyList/Property";
 import AddProperty from "../admin/add property/AddProperty";
 import EditProperty from "../admin/propertyList/EditProperty";
+
+import Payment from "../Pages/Payment";
+
 
 export const MainRoutes = () => {
   return (
@@ -21,6 +25,7 @@ export const MainRoutes = () => {
       <Route path="/buyproduct" element={<Buyproduct />} />
       <Route path="/buyproduct/:id" element={<SingleProduct />} />
       <Route path="/calculator" element={<Calculator />} />
+      <Route path="/payment" element={<Payment />} />
       <Route path="/adminsignin" element={<AdminSignin />} />
       <Route path="/adminsignup" element={<AdminSignup />} />
       <Route path="/adminProperty" element={<Property />} />

@@ -121,15 +121,16 @@ export const Buyproduct = () => {
       <Flex>
       <Grid
         gridTemplateColumns={{
-          xl: "repeat(2,1fr)",
-          lg: "repeat(2,1fr)",
-          md: "repeat(2,1fr)",
-          sm: "repeat(2,1fr)",
-          base: "repeat(2,1fr)",
-        }}
+          xl: "repeat(1,1fr)",
+          lg: "repeat(1,1fr)",
+          md: "repeat(1,1fr)",
+          sm: "repeat(1,1fr)",
+          base: "repeat(1,1fr)",
+        }} 
         gap={5}
-        w={{ xl: "85%", lg: "85%", md: "85%", sm: "95%", base: "95%" }}
+        w={{ xl: "60%", lg: "60%", md: "60%", sm: "60%", base: "60%" }}
         m={"auto"}
+        sx={{margin:"20px"}}
       >
         {product?.map((el) => {
           return (
@@ -137,7 +138,7 @@ export const Buyproduct = () => {
           );
         })}
       </Grid>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d30144.622186874127!2d72.82389400435528!3d19.19180514340419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1686954305012!5m2!1sen!2sin" style={{width:"600px", height:"450px", border:"0.5px solid grey"}} loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d30144.622186874127!2d72.82389400435528!3d19.19180514340419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1686954305012!5m2!1sen!2sin" style={{width:"40%", height:"70vh", border:"0.5px solid grey", margin:"20px"}} loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
       </Flex>
       <br />
       <Flex gap={"5px"} justifyContent={"center"}>
