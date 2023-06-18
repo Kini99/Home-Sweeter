@@ -84,7 +84,7 @@ export const MainRoutes = () => {
           path={ele.path}
           element={
             <>
-              {/* <Navbar /> {ele.element} <Footer /> */}
+              <Navbar /> {ele.element} <Footer />
               {ele.element} 
             </>
           }

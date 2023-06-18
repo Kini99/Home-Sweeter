@@ -98,13 +98,13 @@ return (
                 <Heading
                     lineHeight={1.1}
                     fontWeight={600}
-                    fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
-                    {currentProduct.building}
+                    fontSize={{ base: 'xl', sm: 'xl', lg: '2xl' }}>
+                    {currentProduct.details}
                 </Heading>
                 <Text
                     color={useColorModeValue('gray.900', 'gray.400')}
                     fontWeight={300}
-                    fontSize={'2xl'}>
+                    fontSize={'2xl'} width={"15%"}>
                     ₹{currentProduct.total_price}
                 </Text>
                 </Box>
@@ -118,12 +118,12 @@ return (
               />
             }>
             <VStack spacing={{ base: 4, sm: 6 }}>
-              <Text
-                color={useColorModeValue('gray.500', 'gray.400')}
+              {currentProduct.building?<Text
+                color='gray.500'
                 fontSize={'2xl'}
                 fontWeight={'300'}>
-                {currentProduct.details}
-              </Text>
+                {currentProduct.building}
+              </Text> : null}
               <Text fontSize={'lg'}>
               {currentProduct.description}
               </Text>
