@@ -36,25 +36,6 @@
      cursor: pointer;
    }
    
-   .search-bar {
-     display: flex;
-     align-items: center;
-     background-color: #f2f2f2;
-     border-radius: 5px;
-     padding: 5px;
-     width: 300px;
-     margin-top: 20px;
-   }
-   
-   .search-input {
-     flex: 1;
-     border: none;
-     outline: none;
-     font-size: 16px;
-     padding: 8px;
-     background-color: transparent;
-   }
-   
    .search-button {
      border: 2px solid white;
      outline: none;
@@ -66,54 +47,9 @@
      color: #555;
    }
    
-  
-   
    .fa-search {
      font-size: 18px;
      border: 2px solid white;
-   }
-
-   /* #boom{
-     border:1px solid red;
-   } */
-
-   #boom1{
-     /* border:1px solid red; */
-     height: 50px;
-     width:120%;
-     background-color: orangered;
-     color: white;
-     border: 2px solid white;
-   }
-
-   #boom1 {
-     /* border: 1px solid red; */
-     height: 50px;
-     width: 120%;
-     background-color: orangered;
-     color: white;
-     transition: transform 0.3s;
-     border: 2px solid white;
-   }
-   
-   #boom1:hover {
-     transform: scale(1.1);
-   }
-
-   #boom1 {
-     /* border: 1px solid red; */
-     height: 50px;
-     width: 120%;
-     background-color: orangered;
-     color: white;
-     transition: transform 0.3s, background-color 0.3s;
-     border: 2px solid white;
-   }
-   
-   #boom1:hover {
-     transform: scale(1.1);
-     background-color: greenyellow;
-     color:black
    }
 
    h1 {
@@ -122,8 +58,6 @@
      font-weight: bold;
      text-align: center;
    }
-
-
 
    #TopPartOfHomePage {
      display: flex;
@@ -135,8 +69,6 @@
      height: 450px;
    }
    
- 
-   
    #TopPartOfHomePage > div > h1 {
      color: #fff;
      font-family: TruliaSans, Trulia-Fallback, sans-serif;
@@ -147,44 +79,6 @@
    #second {
 
      margin-top: 0%;
-   }
-   
-   .search-bar {
-     display: flex;
-     align-items: center;
-     background-color: #f2f2f2;
-     border-radius: 5px;
-     padding: 10px;
-     width: 400px;
-     margin-top: 30px;
-     border: 2px solid white;
-   }
-   
-   .search-input {
-     flex: 1;
-     border: none;
-     outline: none;
-     font-size: 24px;
-     padding: 12px;
-     background-color: transparent;
-     border: 2px solid white;
-   }
-   
-   #boom1 {
-     /* border: 2px solid red; */
-     height: 70px;
-     width: 150%;
-     background-color: orangered;
-     color: white;
-     font-size: 24px;
-     transition: transform 0.3s, background-color 0.3s;
-     border: 2px solid white;
-   }
-   
-   #boom1:hover {
-     transform: scale(1.1);
-     background-color: greenyellow;
-     color: black;
    }
 
    #TopPartOfHomePage > div > h1 {
@@ -270,58 +164,10 @@
     font-weight: bold;
   }
   
-  .search-bar {
-    display: flex;
-    align-items: center;
-    background-color: #f2f2f2;
-    border-radius: 5px;
-    padding: 10px;
-    width: 400px;
-    margin-top: 30px;
-    border: 2px solid white;
-  }
-  
-  .search-input {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-size: 24px;
-    padding: 12px;
-    background-color: transparent;
-    border: 2px solid white;
-  }
-  
-  #boom1 {
-    height: 70px;
-    width: 150%;
-    background-color: orangered;
-    color: white;
-    font-size: 24px;
-    transition: transform 0.3s, background-color 0.3s;
-    border: 2px solid white;
-  }
-  
-  #boom1:hover {
-    transform: scale(1.1);
-    background-color: greenyellow;
-    color: black;
-  }
   
   /* Media Query for smaller screens */
   @media screen and (max-width: 600px) {
-    .search-bar {
-      width: 100%;
-    }
-  
-    .search-input {
-      font-size: 18px;
-      padding: 10px;
-    }
-  
-    #boom1 {
-      width: 100%;
-      font-size: 20px;
-    }
+    
   }
   
    
