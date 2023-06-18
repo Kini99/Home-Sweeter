@@ -32,8 +32,9 @@ export const Signin = () => {
 
     axios.post("http://localhost:8080/users/login", payload)
       .then((res) =>{
-         console.log(res.data);
+         alert(res.data.msg);
          localStorage.setItem("frontendtoken",res.data.token)
+         window.location("/buyproducts")
         })
       .catch((err) => console.log(err));
 
