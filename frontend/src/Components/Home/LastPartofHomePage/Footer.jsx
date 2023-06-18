@@ -1,76 +1,110 @@
-import React from 'react';
-import { Box, Container, Flex, Grid, Link, Text, useColorModeValue } from '@chakra-ui/react';
-import { FaInstagram, FaFacebook, FaTwitter, FaLinkedin } from 'react-icons/fa';
-import "./Footer.css"
+import { ReactNode } from "react";
+import {
+  Box,
+  Container,
+  Stack,
+  SimpleGrid,
+  Text,
+  Link,
+  useColorModeValue,
+} from "@chakra-ui/react";
+import { FaTwitter, FaYoutube, FaInstagram, FaFacebook } from "react-icons/fa";
+
+const ListHeader = ({ children }) => {
+  return (
+    <Text fontWeight={"600"} fontSize={"lg"} mb={2} color={"black"}>
+      {children}
+    </Text>
+  );
+};
+
 const Footer = () => {
   return (
-    <div id="lastfooter">
     <Box
-      bg={useColorModeValue('gray.50', 'gray.900')}
-      color={useColorModeValue('gray.700', 'gray.200')}
-      py={10}
-      mt={8}
-      px={4}
+      bg={useColorModeValue("gray.50", "gray.900")}
+      color={useColorModeValue("gray.700", "gray.200")}
     >
-      <Container maxW={'8xl'}>
-        <Grid
-          templateColumns="repeat(4, 1fr)"
-          gap={10}
-          justifyContent={{ base: 'center', md: 'flex-start' }}
-        >
-          <Flex direction="column">
-            <Text fontWeight="bold" fontSize="lg" mb={4}>
-              Social Media
-            </Text>
-            <Link href={'#'} display="flex" alignItems="center" mb={2}>
-              <FaInstagram size={20} style={{ marginRight: '0.5rem' }} />
-              Instagram
-            </Link>
-            <Link href={'#'} display="flex" alignItems="center" mb={2}>
-              <FaFacebook size={20} style={{ marginRight: '0.5rem' }} />
-              Facebook
-            </Link>
-            <Link href={'#'} display="flex" alignItems="center" mb={2}>
-              <FaTwitter size={20} style={{ marginRight: '0.5rem' }} />
-              Twitter
-            </Link>
-            <Link href={'#'} display="flex" alignItems="center">
-              <FaLinkedin size={20} style={{ marginRight: '0.5rem' }} />
-              LinkedIn
-            </Link>
-          </Flex>
-          <Flex direction="column">
-            <Text fontWeight="bold" fontSize="lg" mb={4}>
-              Company
-            </Text>
-            <Link href={'#'}>About us</Link>
-            <Link href={'#'}>Community</Link>
-            <Link href={'#'}>Reviews</Link>
-            <Link href={'#'}>FAQ</Link>
-          </Flex>
-          <Flex direction="column">
-            <Text fontWeight="bold" fontSize="lg" mb={4}>
-              Gift Cards
-            </Text>
-            <Link href={'#'}>Buy gift card</Link>
-            <Link href={'#'}>About gift card</Link>
-            <Link href={'#'}>Redeem gift card</Link>
-            <Link href={'#'}>Corporate gift card</Link>
-          </Flex>
-          <Flex direction="column">
-            <Text fontWeight="bold" fontSize="lg" mb={4}>
-              Explore
-            </Text>
-            <Link href={'#'}>Men</Link>
-            <Link href={'#'}>Women</Link>
-            <Link href={'#'}>Accessories</Link>
-            <Link href={'#'}>Winter</Link>
-          </Flex>
-        </Grid>
+      <Container as={Stack} maxW={"6xl"} py={10}>
+        <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} spacing={8}>
+          <Stack align={"flex-start"}>
+            <ListHeader>Real Estate Markets</ListHeader>
+            <Link href={"#"}>Kolkata Real Estate</Link>
+            <Link href={"#"}>Mumbai Real Estate</Link>
+            <Link href={"#"}>Delhi Real Estate</Link>
+            <Link href={"#"}>Lucknow Real Estate</Link>
+          </Stack>
+
+          <Stack align={"flex-start"}>
+            <ListHeader>Popular Searches</ListHeader>
+            <Link href={"#"}>Condos for Sale Near Me</Link>
+            <Link href={"#"}>Apartments for Rent Near Me</Link>
+            <Link href={"#"}>Houses for Sale Near Me</Link>
+            <Link href={"#"}>Houses for Rent Near Me</Link>
+          </Stack>
+
+          <Stack align={"flex-start"}>
+            <ListHeader>Explore Trulia</ListHeader>
+            <Stack direction={"row"} spacing={3} alignItems={"center"}>
+              <Box>
+                <FaFacebook />
+              </Box>
+              <Box>
+                <Link>Facebook</Link>
+              </Box>
+            </Stack>
+            <Stack direction={"row"} spacing={3} alignItems={"center"}>
+              <Box>
+                <FaTwitter />
+              </Box>
+              <Box>
+                <Link>Twitter</Link>
+              </Box>
+            </Stack>
+            <Stack direction={"row"} spacing={3} alignItems={"center"}>
+              <Box>
+                <FaInstagram />
+              </Box>
+              <Box>
+                <Link>Instagram</Link>
+              </Box>
+            </Stack>
+            <Stack direction={"row"} spacing={3} alignItems={"center"}>
+              <Box>
+                <FaYoutube />
+              </Box>
+              <Box>
+                <Link>Youtube</Link>
+              </Box>
+            </Stack>
+          </Stack>
+
+          <Stack align={"flex-start"}>
+            <ListHeader>For Professionals</ListHeader>
+            <Link href={"#"}>Popular Counties</Link>
+            <Link href={"#"}>Rental Communities</Link>
+            <Link href={"#"}>Real Estate Leads</Link>
+          </Stack>
+        </SimpleGrid>
       </Container>
+
+      <Box
+        borderTopWidth={1}
+        borderStyle={"solid"}
+        borderColor={useColorModeValue("gray.200", "gray.700")}
+      >
+        <Container
+          as={Stack}
+          maxW={"6xl"}
+          py={4}
+          direction={{ base: "column", md: "row" }}
+          spacing={4}
+          justify={{ md: "space-between" }}
+          align={{ md: "center" }}
+        >
+          <Text>© 2023 HomeSweeter. All rights reserved</Text>
+        </Container>
+      </Box>
     </Box>
-    
-    </div>
   );
 };
 
