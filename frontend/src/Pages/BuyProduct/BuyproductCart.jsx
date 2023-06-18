@@ -109,7 +109,7 @@ export const BuyproductCart = ({ product }) => {
                         <Box w={"25%"}>
                             <Text style={{fontWeight:"bolder"}}>₹ {product.total_price}</Text>
                             {product.price_per_sqft ? <Text style={{fontWeight:"normal"}}>(₹ {product.price_per_sqft})</Text> : null}
-                            <Button onClick={handleSchedulingModalOpen}>Schedule Appointment</Button>
+                            {token?<Button colorScheme='green' variant='outline' onClick={handleSchedulingModalOpen}>Schedule Appointment</Button>:<Link to="/signin"><Button colorScheme='green' variant='outline'>Schedule Appointment</Button></Link>}
                             <Modal isOpen={isSchedulingModalOpen} onClose={handleSchedulingModalClose}>
                                 <ModalOverlay />
                                 <ModalContent>
@@ -139,9 +139,9 @@ export const BuyproductCart = ({ product }) => {
                                 </ModalContent>
                             </Modal>
                             <br />
-                            {token?<Link to="/payment"><Button>Buy Now</Button></Link>:<Link to="/login"><Button>Buy Now</Button></Link>}
+                            {token?<Link to="/payment"><Button colorScheme='green' variant='outline'>Buy Now</Button></Link>:<Link to="/signin"><Button colorScheme='green' variant='outline'>Buy Now</Button></Link>}
                             <br />
-                            {token?<Link to="/calculator"><Button>{product.calculator}</Button></Link>:<Link to="/login"><Button>{product.calculator}</Button></Link>}
+                            <Link to="/calculator"><Button colorScheme='green' variant='outline'>{product.calculator}</Button></Link>
                         </Box>
                     </Flex>
 
