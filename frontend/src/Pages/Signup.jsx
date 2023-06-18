@@ -44,9 +44,9 @@ export const Signup = () => {
 
     axios.post("http://localhost:8080/users/register", payload)
     .then((res) => 
-    console.log(res.data)
+    alert(res.data.msg)
     )
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err.message));
 
     setName("");
     setEmail("");

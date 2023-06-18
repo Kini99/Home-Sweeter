@@ -14,6 +14,9 @@ import logo from "./images/logo.png"
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+
+  const token=localStorage.getItem("frontendtoken")
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleMenuToggle = () => {
@@ -77,6 +80,41 @@ const Navbar = () => {
         >
           Mortgage
         </Box>
+        {token?<Link to="/addProperty">
+        <Box
+          position="relative"
+          fontWeight="bold"
+          color="rgb(59, 65, 68)"
+          marginRight="10px"
+          padding="10px"
+          _hover={{
+            bgColor: "#007882",
+            color: "white",
+            fontWeight: "bold",
+          }}
+          borderRadius="10px"
+          display={{ base: "none", md: "block" }}
+        >
+          Sell
+        </Box></Link>:
+        <Link to="/signin">
+        <Box
+          position="relative"
+          fontWeight="bold"
+          color="rgb(59, 65, 68)"
+          marginRight="10px"
+          padding="10px"
+          _hover={{
+            bgColor: "#007882",
+            color: "white",
+            fontWeight: "bold",
+          }}
+          borderRadius="10px"
+          display={{ base: "none", md: "block" }}
+        >
+          Sell
+        </Box></Link>}
+        
       </Flex>
       <Flex ml="auto" alignItems="center">
         <Box
@@ -194,6 +232,34 @@ const Navbar = () => {
             >
               Mortgage
             </MenuItem>
+            {token?<Link to="/addProperty">
+            <MenuItem
+              onClick={handleMenuToggle}
+              px="6px"
+              py="4px"
+              borderRadius="10px"
+              fontWeight="bold"
+              color="rgb(59, 65, 68)"
+              _hover={{ bgColor: "#007882", color: "white" }}
+              borderBottom="1px solid white"
+              transition="background-color 0.3s ease"
+            >
+          Sell
+        </MenuItem></Link>:
+        <Link to="/signin">
+        <MenuItem
+              onClick={handleMenuToggle}
+              px="6px"
+              py="4px"
+              borderRadius="10px"
+              fontWeight="bold"
+              color="rgb(59, 65, 68)"
+              _hover={{ bgColor: "#007882", color: "white" }}
+              borderBottom="1px solid white"
+              transition="background-color 0.3s ease"
+            >
+          Sell
+        </MenuItem></Link>}
             <Link to="/signup">
             <MenuItem
               onClick={handleMenuToggle}

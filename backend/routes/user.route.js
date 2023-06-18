@@ -12,13 +12,13 @@ userRouter.post("/register",async(req,res)=>{
 
     const passwordReq=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!passwordReq.test(password)) {
-        return res.status(400).json({ msg:'Invalid password format! Password format Should contain atleast one uppercase character,one number , special character and length greater then 8'});
+        return res.status(200).json({ msg:'Invalid password format! Password format Should contain atleast one uppercase character, one number, special character and length greater then 8.'});
       }
 
     try{
     const existingUserEmail = await UserModel.findOne({email});
     if (existingUserEmail) {
-        return res.status(400).json({ msg:'User Already Exists'});
+        return res.status(200).json({ msg:'User Already Exists!'});
       }
     bcrypt.hash(password,5,async(err,hash)=>{
         if(err){
@@ -28,9 +28,9 @@ userRouter.post("/register",async(req,res)=>{
             await user.save()
         }
     })
-    res.status(200).json({msg:"The new user has been registered",registeredUser:req.body})
+    res.status(200).json({msg:"Registration Successful!",registeredUser:req.body})
     }catch(err){
-        res.status(400).json({error:err.messag})
+        res.status(400).json({error:err.message})
     }
 })
 
@@ -47,14 +47,14 @@ userRouter.post("/login",async(req,res)=>{
                     expiresIn:120
                   })
                 var refreshToken=jwt.sign({_id:user._id},"masai",{
-                    expiresIn:300
+                    expiresIn:"7d"
                   })
                 res.status(200).json({msg:"Login successful!",token:token,refreshToken:refreshToken})
             }
            })
 
         }else{
-            res.status(200).json({msg:"User Not Found"})
+            res.status(200).json({msg:"User Not Found!"})
         }
 
     }catch(err){
