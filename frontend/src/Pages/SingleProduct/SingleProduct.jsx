@@ -44,6 +44,10 @@ const SingleProduct = () => {
         singlePage()
     }, [])
 
+    const addToCart=()=>{
+      localStorage.setItem("cart",currentProduct.total_price_num)
+    }
+
     // const [isModalOpen, setIsModalOpen] = useState(false);
     // const currentUrl = window.location.href;
 
@@ -104,7 +108,7 @@ return (
                 <Text
                     color={useColorModeValue('gray.900', 'gray.400')}
                     fontWeight={300}
-                    fontSize={'2xl'} width={"15%"}>
+                    fontSize={'2xl'} width={"20%"}>
                     ₹{currentProduct.total_price}
                 </Text>
                 </Box>
@@ -294,7 +298,9 @@ return (
             _hover={{
               transform: 'translateY(2px)',
               boxShadow: 'lg',
-            }}>
+            }} 
+            onClick={addToCart}
+            >
            Buy Now
           </Button></Link>:<Link to="/signin"><Button
             rounded={'none'}
