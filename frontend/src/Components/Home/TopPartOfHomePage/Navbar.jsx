@@ -289,10 +289,10 @@ const Navbar = () => {
               borderBottom="1px solid white"
               transition="background-color 0.3s ease"
             >
-             <Box onClick={handleLogout} >Logout</Box> 
+              <Box onClick={handleLogout} >Logout</Box>
             </MenuItem>
               :
-              (<Box>
+              <Box>
                 <Link to="/signup">
                   <MenuItem
                     onClick={handleMenuToggle}
@@ -323,7 +323,7 @@ const Navbar = () => {
                     Login
                   </MenuItem>
                 </Link>
-              </Box>)}
+              </Box>}
           </MenuList>
         </Menu>
       </Flex>

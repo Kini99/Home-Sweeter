@@ -5,7 +5,6 @@ import {
   Stack,
   SimpleGrid,
   Text,
-  Link,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { FaTwitter, FaYoutube, FaInstagram, FaFacebook } from "react-icons/fa";
@@ -28,18 +27,18 @@ const Footer = () => {
         <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} spacing={8}>
           <Stack align={"flex-start"}>
             <ListHeader>Real Estate Markets</ListHeader>
-            <Link href={"#"}>Kolkata Real Estate</Link>
-            <Link href={"#"}>Mumbai Real Estate</Link>
-            <Link href={"#"}>Delhi Real Estate</Link>
-            <Link href={"#"}>Lucknow Real Estate</Link>
+            <Text>Kolkata Real Estate</Text>
+            <Text>Mumbai Real Estate</Text>
+            <Text>Delhi Real Estate</Text>
+            <Text>Lucknow Real Estate</Text>
           </Stack>
 
           <Stack align={"flex-start"}>
             <ListHeader>Popular Searches</ListHeader>
-            <Link href={"#"}>Condos for Sale Near Me</Link>
-            <Link href={"#"}>Apartments for Rent Near Me</Link>
-            <Link href={"#"}>Houses for Sale Near Me</Link>
-            <Link href={"#"}>Houses for Rent Near Me</Link>
+            <Text>Condos for Sale Near Me</Text>
+            <Text>Apartments for Rent Near Me</Text>
+            <Text>Houses for Sale Near Me</Text>
+            <Text>Houses for Rent Near Me</Text>
           </Stack>
 
           <Stack align={"flex-start"}>
@@ -49,7 +48,7 @@ const Footer = () => {
                 <FaFacebook />
               </Box>
               <Box>
-                <Link>Facebook</Link>
+                <Text>Facebook</Text>
               </Box>
             </Stack>
             <Stack direction={"row"} spacing={3} alignItems={"center"}>
@@ -57,7 +56,7 @@ const Footer = () => {
                 <FaTwitter />
               </Box>
               <Box>
-                <Link>Twitter</Link>
+                <Text>Twitter</Text>
               </Box>
             </Stack>
             <Stack direction={"row"} spacing={3} alignItems={"center"}>
@@ -65,7 +64,7 @@ const Footer = () => {
                 <FaInstagram />
               </Box>
               <Box>
-                <Link>Instagram</Link>
+                <Text>Instagram</Text>
               </Box>
             </Stack>
             <Stack direction={"row"} spacing={3} alignItems={"center"}>
@@ -73,16 +72,16 @@ const Footer = () => {
                 <FaYoutube />
               </Box>
               <Box>
-                <Link>Youtube</Link>
+                <Text>Youtube</Text>
               </Box>
             </Stack>
           </Stack>
 
           <Stack align={"flex-start"}>
             <ListHeader>For Professionals</ListHeader>
-            <Link href={"#"}>Popular Counties</Link>
-            <Link href={"#"}>Rental Communities</Link>
-            <Link href={"#"}>Real Estate Leads</Link>
+            <Text>Popular Counties</Text>
+            <Text>Rental Communities</Text>
+            <Text>Real Estate Leads</Text>
           </Stack>
         </SimpleGrid>
       </Container>
