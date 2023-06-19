@@ -42,7 +42,7 @@ export const Signup = () => {
       password,
     };
 
-    axios.post("http://localhost:8080/users/register", payload)
+    axios.post(`${process.env.REACT_APP_SERVER}/users/register`, payload)
     .then((res) => 
     alert(res.data.msg)
     )

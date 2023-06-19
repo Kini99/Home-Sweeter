@@ -31,7 +31,7 @@ export const Signin = () => {
       password,
     };
 
-    axios.post("http://localhost:8080/users/login", payload)
+    axios.post(`${process.env.REACT_APP_SERVER}/users/login`, payload)
       .then((res) =>{
          alert(res.data.msg);
          localStorage.setItem("frontendtoken",res.data.token)
