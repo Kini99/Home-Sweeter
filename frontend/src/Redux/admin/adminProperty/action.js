@@ -10,7 +10,7 @@ import {
 
 //GET TOKEN FROM LOCAL STOREGE
 
-// const token = localStorage.getItem("adminToken");
+const token = localStorage.getItem("adminToken");
 
 //GET DATA FUNCTION FOR GETTING THE DATA TO FRONTEND
 
@@ -18,7 +18,7 @@ export const getData = (dispatch) => {
   dispatch({ type: REQUEST_LOADING });
 
   axios
-    .get(`http://localhost:8080/property/`)
+    .get(`${process.env.REACT_APP_SERVER}/property/`)
     .then((res) => {
       dispatch({ type: GET_REQUEST_SUCCESS, payload: res.data });
     })
@@ -34,9 +34,9 @@ export const addProduct = (payload) => (dispatch) => {
   //   console.log(payload);
   axios
     .post(
-      `https://project-backend-t6y7.onrender.com/products`,
-      payload
-      //   { headers: { Authorization: `${token}` } }
+      `${process.env.REACT_APP_SERVER}/products`,
+      payload,
+        { headers: { Authorization: `Bearer ${token}` } }
     )
     .then((res) => {
       //   console.log(res.data);
@@ -55,9 +55,10 @@ export const editProduct = (payload, id) => (dispatch) => {
 
   axios
     .patch(
-      `https://project-backend-t6y7.onrender.com/products/${id}`,
-      payload
-      //   { headers: { Authorization: `${token}` } }
+      `${process.env.REACT_APP_SERVER}/products/${id}`, payload,
+        { headers: 
+          { Authorization: `Bearer ${token}`},
+         }
     )
     .then((res) => {
       //   console.log(res.data);
@@ -76,9 +77,9 @@ export const deleteProduct = (id) => (dispatch) => {
   //   console.log(token)
   axios
     .delete(
-      `https://project-backend-t6y7.onrender.com/products/${id}`
-
-      //   { headers: { Authorization: token } }
+      `${process.env.REACT_APP_SERVER}/products/${id}`
+,
+        { headers: { Authorization: `Bearer ${token}` } }
     )
     .then((res) => {
       console.log(res.data);

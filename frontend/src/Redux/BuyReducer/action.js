@@ -6,7 +6,7 @@ export const getProducts =(allParams)=>(dispatch) => {
   const queryParams = new URLSearchParams(allParams.params).toString();
 
   dispatch({type:BUYPRODUCT_REQUEST})
-  axios.get(`http://localhost:8080/property/?${queryParams}`)
+  axios.get(`${process.env.REACT_APP_SERVER}/property/?${queryParams}`)
   .then((res)=>{
     dispatch({type:GET_BUYPRODUCT_SUCCESS,payload:res.data})
   })
