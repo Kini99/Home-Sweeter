@@ -33,13 +33,13 @@ const Card = () => {
     setCartData(Data)
   },[])
 
-  function totalPrice(){
-    let total = 0;
-    for(let i=0;i<=cartData.length-1; i++){
-      total += cartData[i].quantity;
-    }
-    return total;
-  }
+  // function totalPrice(){
+  //   let total = 0;
+  //   for(let i=0;i<=cartData.length-1; i++){
+  //     total += cartData[i].quantity;
+  //   }
+  //   return total;
+  // }
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -115,7 +115,7 @@ const Card = () => {
     setFlip(true);
   };
 
-  if(cartData.length!==0){
+  if(cartData.length==0){
     return <>
     <EmptyCart></EmptyCart>
     </>
@@ -305,7 +305,7 @@ const Card = () => {
                 <img src="https://cdn.dribbble.com/users/329319/screenshots/2140009/day-004---credit-card-payment.gif" alt="" />
             </div>
             <div className="lastCont">
-            <p><span>Price to pay:</span> ₹{totalPrice()}</p>
+            <p><span>Price to pay:</span> ₹{cartData}/-</p>
             </div>
           </div>
       </div>

@@ -8,6 +8,7 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  Button,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import logo from "./images/logo.png"
@@ -22,6 +23,11 @@ const Navbar = () => {
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const handleLogout=()=>{
+    localStorage.removeItem("frontendtoken",null)
+    window.location.reload();
+  }
 
   return (
     <Flex
@@ -139,7 +145,18 @@ const Navbar = () => {
         >
           Saved Searches
         </Box>
-        <Link to="/signin">
+        {token?(<Button
+          marginRight="10px"
+          padding="10px"
+          _hover={{ bgColor: "#007882", color: "white" }}
+          borderRadius="10px"
+          fontWeight="bold"
+          color="rgb(59, 65, 68)"
+          display={{ base: "none", md: "block" }}
+          onClick={handleLogout}
+        >
+          Logout
+        </Button>):(<Box display={"flex"}><Link to="/signin">
         <Box
           marginRight="10px"
           padding="10px"
@@ -163,7 +180,8 @@ const Navbar = () => {
         >
           Sign Up
         </Box>
-        </Link>
+        </Link></Box>)}
+        
         <Menu isLazy display={{ base: "block", md: "none" }}>
           <MenuButton
             as={IconButton}
