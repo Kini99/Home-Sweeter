@@ -35,7 +35,7 @@ export const Signin = () => {
       .then((res) =>{
          alert(res.data.msg);
          localStorage.setItem("frontendtoken",res.data.token)
-         navigate("/buyproduct")
+         navigate("/")
         })
       .catch((err) => console.log(err));
 
