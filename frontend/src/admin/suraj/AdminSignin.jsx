@@ -17,12 +17,13 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export const AdminSignin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const submitLogin = () => {
     const payload = {
@@ -30,16 +31,17 @@ export const AdminSignin = () => {
       password,
     };
 
-    axios.post("http://localhost:8080/admins/login", payload)
-      .then((res) =>{
-         console.log(res.data);
-         localStorage.setItem("admintoken",res.data.token)
-        })
+    axios
+      .post("http://localhost:8080/admins/login", payload)
+      .then((res) => {
+        console.log(res.data);
+        localStorage.setItem("admintoken", res.data.token);
+        navigate("/adminProperty");
+      })
       .catch((err) => console.log(err));
 
     setEmail("");
     setPassword("");
-    
   };
 
   return (
@@ -88,9 +90,12 @@ export const AdminSignin = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <InputRightElement h={"full"}>
-                  <Button variant={"ghost"} onClick={() =>
-                        setShowPassword((showPassword) => !showPassword)
-                      }>
+                  <Button
+                    variant={"ghost"}
+                    onClick={() =>
+                      setShowPassword((showPassword) => !showPassword)
+                    }
+                  >
                     {showPassword ? <ViewIcon /> : <ViewOffIcon />}
                   </Button>
                 </InputRightElement>

@@ -1,9 +1,10 @@
 const express=require("express");
 const { PropertyModel } = require("../models/property.model");
+const { auth } = require("../middleware/auth.middleware");
 
 const propertyRouter= express.Router();
 
-propertyRouter.post("/add", async (req, res) => {
+propertyRouter.post("/add", auth, async (req, res) => {
     try {
         const property = new PropertyModel(req.body);
         await property.save();
@@ -15,7 +16,7 @@ propertyRouter.post("/add", async (req, res) => {
 
 propertyRouter.get("/", async(req,res)=>{
     const max=10;
-    const pageNo=Number(req.query.page)||1;
+    const page=Number(req.query.page)||1;
     const search = req.query.search || '';
     const sortByPrice = req.query.sortByPrice || '';
     const sortBySize = req.query.sortBySize || '';
@@ -62,7 +63,7 @@ propertyRouter.get("/", async(req,res)=>{
   
       let properties = await PropertyModel.find(query).lean()
         .limit(max)
-        .skip((pageNo-1)*max);
+        .skip((page-1)*max);
 
         if (sortByPrice) {
             properties = properties.sort((a, b) => {
@@ -104,7 +105,7 @@ propertyRouter.get("/:propertyId", async(req,res)=>{
     }
 })
 
-propertyRouter.patch("/update/:propertyId", async (req, res) => {
+propertyRouter.patch("/update/:propertyId", auth, async (req, res) => {
     const { propertyId } = req.params;
     try {
         await PropertyModel.findByIdAndUpdate({ _id: propertyId }, req.body);
@@ -114,7 +115,7 @@ propertyRouter.patch("/update/:propertyId", async (req, res) => {
     }
 })
 
-propertyRouter.delete("/delete/:propertyId", async (req, res) => {
+propertyRouter.delete("/delete/:propertyId", auth, async (req, res) => {
     const { propertyId } = req.params;
     try {
         await PropertyModel.findByIdAndDelete({ _id: propertyId });

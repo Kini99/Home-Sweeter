@@ -9,6 +9,8 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter 
 
 export const BuyproductCart = ({ product }) => {
 
+    const token=localStorage.getItem("frontendtoken")
+
     const [wishlist, setWishlist] = useState(false)
 
     const handleToggle = () => {
@@ -42,7 +44,6 @@ export const BuyproductCart = ({ product }) => {
         setIsSchedulingModalOpen(false);
     }
     const handleScheduleAppointment = () => {
-        // Handle scheduling appointment logic
         alert(`Appointment scheduled for ${selectedDate} at ${selectedTime}. Type: ${appointmentType}`);
         handleSchedulingModalClose();
     };
@@ -54,17 +55,17 @@ export const BuyproductCart = ({ product }) => {
 
                 <Box borderRadius={"20px"} p={"10px"} backgroundColor={"#f4f4f4"} textAlign={"start"}>
                     <Flex justifyContent={"right"}>
-                        {wishlist ? <IoHeartSharp size="20px" color={"606060"} onClick={handleToggle} /> : <IoHeartOutline size="20px" color={"606060"} onClick={handleToggle} />}
-                        <TbShare3 size="20px" color={"606060"} onClick={handleModalOpen}></TbShare3>
+                        {wishlist ? <IoHeartSharp size="25px" color={"606060"} onClick={handleToggle} /> : <IoHeartOutline size="25px" color={"606060"} onClick={handleToggle} />}
+                        <TbShare3 size="25px" color={"606060"} onClick={handleModalOpen} style={{marginLeft:"15px", marginRight:"15px"}}></TbShare3>
                         <Modal isOpen={isModalOpen} onClose={handleModalClose}>
                             <ModalOverlay />
                             <ModalContent>
                                 <ModalHeader>Share Link</ModalHeader>
                                 <ModalBody>
-                                    <Text>{currentUrl}</Text>
+                                    <Text>{currentUrl}/{product._id}</Text>
                                 </ModalBody>
                                 <ModalFooter>
-                                    <CopyToClipboard text={currentUrl}>
+                                    <CopyToClipboard text={`${currentUrl}/${product._id}`}>
                                         <Button colorScheme="blue" onClick={handleCopyLink}>
                                             Copy Link
                                         </Button>
@@ -79,33 +80,36 @@ export const BuyproductCart = ({ product }) => {
 
                     <Flex>
 
-                        <Image src={product.image} borderRadius={"10%"} w={"40%"} h={"150px"} marginBottom={"5px"} />
-                        <Box>
+                        <Image src={product.image} borderRadius={"10%"} w={"30%"} h={"150px"} marginBottom={"5px"} marginRight={"15px"}/>
+                        <Box w={"45%"} marginRight={"15px"}>
                             <Link to={`/buyproduct/${product._id}`}>
-                                <Text>{product.details}</Text>
+                                <Text style={{fontWeight:"bold"}}>{product.details}</Text>
                                 {product.building ? <Text color={"#606060"}>{product.building}</Text> : null}
-                                <Flex>
+                                <Flex style={{justifyContent:"space-between"}}>
                                     <Box>
-                                        <Text>Carpet Area</Text>
+                                        <Text style={{fontWeight:"bold"}}>Carpet Area</Text>
                                         <Text>{product.carpet}</Text>
                                     </Box>
+                                    <div style={{border:"1px solid grey", width:"0.1px", height:"50px"}}></div>
                                     <Box>
-                                        <Text>Status</Text>
+                                        <Text style={{fontWeight:"bold"}}>Status</Text>
                                         <Text>{product.status}</Text>
                                     </Box>
+                                    <div style={{border:"1px solid grey", width:"0.1px", height:"50px"}}></div>
                                     <Box>
-                                        <Text>Type</Text>
+                                        <Text style={{fontWeight:"bold"}}>Type</Text>
                                         <Text>{product.furnishing}</Text>
                                     </Box>
                                 </Flex>
-                                <Text>{product.description.slice(0, 50)}{product.description.length > 50 && "..."}</Text>
+                                <br/>
+                                <Text>{product.description.slice(0, 40)}{product.description.length > 50 && "..."}</Text>
                             </Link>
                         </Box>
 
-                        <Box>
-                            <Text>₹ {product.total_price}</Text>
-                            {product.price_per_sqft ? <Text>₹ {product.price_per_sqft}</Text> : null}
-                            <Button onClick={handleSchedulingModalOpen}>Schedule Appointment</Button>
+                        <Box w={"25%"}>
+                            <Text style={{fontWeight:"bolder"}}>₹ {product.total_price}</Text>
+                            {product.price_per_sqft ? <Text style={{fontWeight:"normal"}}>(₹ {product.price_per_sqft})</Text> : null}
+                            {token?<Button colorScheme='green' variant='outline' onClick={handleSchedulingModalOpen}>Schedule Appointment</Button>:<Link to="/signin"><Button colorScheme='green' variant='outline'>Schedule Appointment</Button></Link>}
                             <Modal isOpen={isSchedulingModalOpen} onClose={handleSchedulingModalClose}>
                                 <ModalOverlay />
                                 <ModalContent>
@@ -135,9 +139,9 @@ export const BuyproductCart = ({ product }) => {
                                 </ModalContent>
                             </Modal>
                             <br />
-                            <Button>Buy Now</Button>
+                            {token?<Link to="/payment"><Button colorScheme='green' variant='outline'>Buy Now</Button></Link>:<Link to="/signin"><Button colorScheme='green' variant='outline'>Buy Now</Button></Link>}
                             <br />
-                            <Link to="/calculator">{product.calculator}</Link>
+                            <Link to="/calculator"><Button colorScheme='green' variant='outline'>{product.calculator}</Button></Link>
                         </Box>
                     </Flex>
 

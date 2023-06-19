@@ -11,7 +11,7 @@ const TopNavbar = () => {
 
   const handleClick = () => {
     localStorage.clear();
-    navigate("/");
+    navigate("/adminsignin");
   };
   return (
     <header>
@@ -34,6 +34,11 @@ const TopNavbar = () => {
         <li>
           <Link to={"/userlist"} className="kd-link">
             User List
+          </Link>
+        </li>
+        <li>
+          <Link to={"/adminlist"} className="kd-link">
+            Admin List
           </Link>
         </li>
         <button className="kd-logout" onClick={handleClick}>
