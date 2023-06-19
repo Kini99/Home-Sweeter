@@ -9,7 +9,7 @@ export const getAdmins = (dispatch) => {
   dispatch({ type: REQUEST_LOADING });
 
   axios
-    .get(`http://localhost:8080/admins/`)
+    .get(`${process.env.REACT_APP_SERVER}/admins/`)
     .then((res) => {
       dispatch({ type: GET_REQUEST_SUCCESS, payload: res.data });
     })
