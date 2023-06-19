@@ -318,7 +318,7 @@ return (
            Buy Now
           </Button></Link>}
 
-          {token?<Link to="/calculator"> <Button
+          <Link to="/calculator"> <Button
             rounded={'none'}
             w={'full'}
             mt={1}
@@ -332,22 +332,7 @@ return (
               boxShadow: 'lg',
             }}>
            {currentProduct.calculator}
-          </Button></Link>:<Link to="/signin"><Button
-            rounded={'none'}
-            w={'full'}
-            mt={1}
-            size={'lg'}
-            py={'7'}
-            bg={'gray.900'}
-            color={'white'}
-            textTransform={'uppercase'}
-            _hover={{
-              transform: 'translateY(2px)',
-              boxShadow: 'lg',
-            }}>
-          {currentProduct.calculator}
           </Button></Link>
-          }
             
         </Stack>
        
