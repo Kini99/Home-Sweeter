@@ -2,15 +2,15 @@ import {
   GET_REQUEST_SUCCESS,
   REQUEST_LOADING,
   REQUEST_PENDING,
-} from "../adminProperty/actionType";
+} from "./actionType";
 
 const initialState = {
   isLoading: false,
   isError: false,
-  person: [],
+  admins: [],
 };
 
-export const adminUserReducer = (state = initialState, action) => {
+export const adminDataReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -24,7 +24,7 @@ export const adminUserReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        person: payload,
+        admins: payload,
       };
     case REQUEST_PENDING:
       return {

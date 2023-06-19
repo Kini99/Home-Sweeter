@@ -21,7 +21,7 @@ const PropertyCard = ({
   bathroom,
   carpet,
   _id,
-  balcony,
+  furnishing,
 }) => {
   const dispatch = useDispatch();
   const toast = useToast();
@@ -38,6 +38,9 @@ const PropertyCard = ({
     <div>
       <Card maxW="sm" maxH={"800px"} mt={5} border={"1px solid #1e7816 "}>
         <CardBody>
+          <Text color={"black"} mb={10} maxBlockSize={5} fontSize="lg">
+            {details}
+          </Text>
           <Image
             src={image}
             alt={details}
@@ -57,13 +60,10 @@ const PropertyCard = ({
               Bathroom:-{bathroom}
             </Text>
             <Text color={"black"} fontSize="sm">
-              Balcony:-{balcony}
+            Furnishing:-{furnishing}
             </Text>
             <Text color={"black"} fontSize="sm">
               Status:-{status}
-            </Text>
-            <Text color={"black"}  maxBlockSize={5} fontSize="sm">
-              Details:-{details}
             </Text>
           </Stack>
         </CardBody>

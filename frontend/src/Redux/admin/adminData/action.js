@@ -5,11 +5,11 @@ import {
   REQUEST_PENDING,
 } from "./actionType";
 
-export const getUsers = (dispatch) => {
+export const getAdmins = (dispatch) => {
   dispatch({ type: REQUEST_LOADING });
 
   axios
-    .get(`http://localhost:8080/users/`)
+    .get(`http://localhost:8080/admins/`)
     .then((res) => {
       dispatch({ type: GET_REQUEST_SUCCESS, payload: res.data });
     })

@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { editProduct } from "../../Redux/admin/adminProperty/action";
 import TopNavbar from "../Top Navbar/TopNavbar";
 const EditProperty = () => {
@@ -21,6 +21,7 @@ const EditProperty = () => {
   const toast = useToast();
   const positions = ["top"];
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { property } = useSelector((store) => {
     return store.adminPropertyReducer;
   });
@@ -45,6 +46,7 @@ const EditProperty = () => {
       position: positions,
       isClosable: true,
     });
+    // navigate("/adminProperty");
   };
   return (
     <>
@@ -61,7 +63,7 @@ const EditProperty = () => {
         >
           <FormControl>
             <Heading mb={"10px"} color={"#1e7816"} textAlign={"center"}>
-               Property ID :- {id}
+              Property ID :- {id}
             </Heading>
             <FormLabel m={"10px"}>Image URL</FormLabel>
             <Input

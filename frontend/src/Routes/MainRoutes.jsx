@@ -15,6 +15,8 @@ import { AdminSignup } from "../admin/suraj/AdminSignup";
 import Property from "../admin/propertyList/Property";
 import AddProperty from "../admin/add property/AddProperty";
 import EditProperty from "../admin/propertyList/EditProperty";
+import User from "../admin/user list/User";
+import Admin from "../admin/user list/Admin";
 
 export const MainRoutes = () => {
   const PageRoutes = [
@@ -73,6 +75,14 @@ export const MainRoutes = () => {
     {
       path: "/editProperty/:id",
       element: <EditProperty />,
+    },
+    {
+      path: "/userlist",
+      element: <User />,
+    },
+    {
+      path: "/adminlist",
+      element: <Admin />,
     },
   ];
 
