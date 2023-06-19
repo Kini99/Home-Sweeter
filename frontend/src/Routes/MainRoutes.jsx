@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { Signin } from "../Pages/Signin";
 import { Signup } from "../Pages/Signup";
 import Home from "../Pages/Home";
-import {Buyproduct} from "../Pages/BuyProduct/Buyproduct"
+import { Buyproduct } from "../Pages/BuyProduct/Buyproduct";
 import { AdminSignin } from "../admin/suraj/AdminSignin";
 import { AdminSignup } from "../admin/suraj/AdminSignup";
 import SingleProduct from "../Pages/SingleProduct/SingleProduct";
@@ -11,6 +11,7 @@ import Calculator from "../Pages/Calculator";
 import Property from "../admin/propertyList/Property";
 import AddProperty from "../admin/add property/AddProperty";
 import EditProperty from "../admin/propertyList/EditProperty";
+import User from "../admin/user list/User";
 
 export const MainRoutes = () => {
   return (
@@ -26,6 +27,7 @@ export const MainRoutes = () => {
       <Route path="/adminProperty" element={<Property />} />
       <Route path="/addProperty" element={<AddProperty />} />
       <Route path="/editProperty/:id" element={<EditProperty />} />
+      <Route path="/userlist" element={<User />} />
     </Routes>
   );
 };

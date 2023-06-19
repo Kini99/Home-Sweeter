@@ -25,7 +25,7 @@ header {
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
-.kd-logo{
+.kd-logo {
   height: 4rem;
   width: 7rem;
 }
@@ -35,13 +35,17 @@ nav li {
   color: var(--textColor);
   list-style: none;
 }
-.kd-link{
-    color: var(--textColor);
-    text-decoration: none;
-    font-size: 1.3rem;
+.kd-link {
+  color: var(--textColor);
+  text-decoration: none;
+  font-size: 1.3rem;
 }
 nav li:hover {
   color: var(--secondaryColor);
+}
+.kd-logout {
+  color: var(--textColor);
+  font-size: 1.3rem;
 }
 
 header .kd-nav-btn {
