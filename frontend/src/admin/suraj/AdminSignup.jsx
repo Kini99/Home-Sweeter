@@ -48,13 +48,13 @@ export const AdminSignup = () => {
           data: postData,
         })
           .then((res) => {
-            console.log(res);
+            //console.log(res);
+            alert(res.data.msg)
           })
           .catch((err) => {
             console.log(err);
           });
       })
-      .catch((err) => console.log(err));
   };
 
   const postdata = () => {

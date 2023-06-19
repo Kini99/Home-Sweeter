@@ -32,9 +32,10 @@ export const AdminSignin = () => {
     };
 
     axios
-      .post("http://localhost:8080/admins/login", payload)
+      .post(`${process.env.REACT_APP_SERVER}/admins/login`, payload)
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
+        alert(res.data.msg)
         localStorage.setItem("admintoken", res.data.token);
         navigate("/adminProperty");
       })
