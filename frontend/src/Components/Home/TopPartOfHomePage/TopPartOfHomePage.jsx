@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './TopPartOfHomePage.css';
 import { IconButton, Input, Stack, useColorModeValue } from '@chakra-ui/react';
 import { BiSearch } from 'react-icons/bi';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getProducts } from '../../../Redux/BuyReducer/action';
+
 const TopPartOfHomePage = () => {
+
+  const [searchParam, setSearchParam] = useState('');
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleSearch = () => {
+    if (searchParam!== '') {
+      dispatch(getProducts({ search: searchParam }));
+      const queryParams = new URLSearchParams();
+      queryParams.set('search', searchParam);
+      navigate(`/buyProduct?${queryParams.toString()}`);
+    }
+  };
+
   return (
     <div id="TopPartOfHomePage" className="centered">
       <div>
@@ -38,6 +56,8 @@ const TopPartOfHomePage = () => {
                 width={{base:"200px" ,sm: "180px", md: "250px",lg:"300px" }}
                 borderTopRightRadius={"none"}
                 borderBottomRightRadius={"none"}
+                value={searchParam}
+            onChange={(e) => setSearchParam(e.target.value)}
               />
               <IconButton
                 bg={useColorModeValue('red.400', 'red.800')}
@@ -51,6 +71,7 @@ const TopPartOfHomePage = () => {
                 borderBottomLeftRadius={"none"}
                 aria-label="Subscribe"
                 icon={<BiSearch />}
+                onClick={handleSearch}
               />
             </Stack>
       </div>
