@@ -25,7 +25,8 @@ const Navbar = () => {
   };
 
   const handleLogout=()=>{
-    localStorage.removeItem("frontendtoken",null)
+    localStorage.removeItem("frontendtoken")
+    localStorage.removeItem("cart")
     window.location.reload();
   }
 
