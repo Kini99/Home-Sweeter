@@ -17,12 +17,13 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const navigate=useNavigate()
 
   const submitLogin = () => {
     const payload = {
@@ -34,7 +35,7 @@ export const Signin = () => {
       .then((res) =>{
          alert(res.data.msg);
          localStorage.setItem("frontendtoken",res.data.token)
-         window.location("/buyproducts")
+         navigate("/buyproduct")
         })
       .catch((err) => console.log(err));
 
