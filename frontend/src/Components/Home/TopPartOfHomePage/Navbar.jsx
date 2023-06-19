@@ -172,7 +172,6 @@ const Navbar = () => {
             onClick={handleMenuToggle}
           />
           <MenuList
-            bgColor="#2D2F3B"
             color="#2D2F3B"
             borderRadius="10px"
             fontWeight="bold"

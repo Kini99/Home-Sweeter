@@ -31,23 +31,23 @@ function Calculator() {
       <h2 className="calculator-title">Housing Loan Eligibility Calculator</h2>
       <div className="calculator-row">
         <label>Age:</label>
-        <input type="number" value={age} onChange={(e) => setAge(e.target.value)} />
+        <input type="number" value={age} onChange={(e) => setAge(e.target.value)} required/>
       </div>
       <div className="calculator-row">
         <label>Net Income (monthly):</label>
-        <input type="number" value={netIncome} onChange={(e) => setNetIncome(e.target.value)} />
+        <input type="number" value={netIncome} onChange={(e) => setNetIncome(e.target.value)} required />
       </div>
       <div className="calculator-row">
         <label>Existing Monthly EMI:</label>
-        <input type="number" value={existingEmi} onChange={(e) => setExistingEmi(e.target.value)} />
+        <input type="number" value={existingEmi} onChange={(e) => setExistingEmi(e.target.value)} required />
       </div>
       <div className="calculator-row">
         <label>Interest Rate (%):</label>
-        <input type="number" value={interestRate} onChange={(e) => setInterestRate(e.target.value)} />
+        <input type="number" value={interestRate} onChange={(e) => setInterestRate(e.target.value)} required/>
       </div>
       <div className="calculator-row">
         <label>Tenure (years):</label>
-        <input type="number" value={tenure} onChange={(e) => setTenure(e.target.value)} />
+        <input type="number" value={tenure} onChange={(e) => setTenure(e.target.value)} required />
       </div>
       <button className="calculator-button" onClick={calculateLoanEligibility}>Calculate</button>
       <div className="calculator-row">
