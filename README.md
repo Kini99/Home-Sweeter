@@ -47,5 +47,3 @@ Kinjal Momaya - [GitHub](https://github.com/Kini99)
 Suraj Yadav - [GitHub](https://github.com/Surajy001) 
 Vikas Suresh - [GitHub](https://github.com/vikassuresh4397) 
 Kunal Deotale - [GitHub](https://github.com/kunal8987) 
-
-

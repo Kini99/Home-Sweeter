@@ -14,7 +14,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import axios from "axios";
 
@@ -25,6 +25,8 @@ export const Signup = () => {
   const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigate = useNavigate();
 
   //const handleChange = (e) => {};
 
@@ -43,10 +45,12 @@ export const Signup = () => {
     };
 
     axios.post(`${process.env.REACT_APP_SERVER}/users/register`, payload)
-    .then((res) => 
-    alert(res.data.msg)
-    )
-    .catch((err) => console.log(err.message));
+      .then((res) => {
+        alert(res.data.msg)
+        navigate("/signin")
+      }
+      )
+      .catch((err) => console.log(err.message));
 
     setName("");
     setEmail("");
@@ -140,8 +144,8 @@ export const Signup = () => {
                 />
                 <InputRightElement h={"full"}>
                   <Button variant={"ghost"} onClick={() =>
-                        setShowPassword((showPassword) => !showPassword)
-                      }>
+                    setShowPassword((showPassword) => !showPassword)
+                  }>
                     {showPassword ? <ViewIcon /> : <ViewOffIcon />}
                   </Button>
                 </InputRightElement>
